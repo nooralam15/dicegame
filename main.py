@@ -15,7 +15,6 @@ def snakeEyes(d1, d2):
     #set up a while loop 
     while sum != 2:
         snakeEyes(d1, d2)
-    
     else: 
         print("Snake Eyes")
         askMenu()
@@ -49,7 +48,6 @@ def rollDiceFive(d1, d2):
         d2 = random.randint(1,6)
         sum = str(d1 + d2)
         print(str(d1) + " - " + str(d2) + " (total = " + sum + ")")
-
     else:
         askMenu()
 
@@ -68,7 +66,7 @@ def diceMaster(userInp):
     #create variables that will store dice 1 and 2
     d1 = None
     d2 = None
-    #going to check what the user input value is
+    
     if (userInp == 1):
         rollDiceOnce(d1, d2)
     
