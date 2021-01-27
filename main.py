@@ -1,23 +1,22 @@
 #Dice Roll Program 
 
 #import libraries
-import sys
 import random
 
 #function rolls dice until snake eyes
 def snakeEyes(d1, d2):
+    loop = True
+    #set up a while loop that will run the snake eyes loop
+    while loop: 
+        d1 = random.randint(1,6)
+        d2 = random.randint(1,6)
+        sum = d1 + d2
+        print(str(d1) + " - " + str(d2) + " (total = " + str(sum) + ")")           
+        if (sum == 2):
+            loop = False;
 
-    d1 = random.randint(1,6)
-    d2 = random.randint(1,6)
-    sum = d1 + d2
-    print(str(d1) + " - " + str(d2) + " (total = " + str(sum) + ")")
-
-    #set up a while loop 
-    while sum != 2:
-        snakeEyes(d1, d2)
     else: 
         print("Snake Eyes")
-        askMenu()
 
 
 #function rolls dice n times
@@ -32,8 +31,6 @@ def rollDiceN(d1, d2):
             d2 = random.randint(1,6)
             sum = str(d1 + d2)
             print(str(d1) + " - " + str(d2) + " (total = " + sum + ")")
-        else:
-            askMenu()
     
     else: 
         print("Please Enter a Valid Number")
@@ -48,8 +45,6 @@ def rollDiceFive(d1, d2):
         d2 = random.randint(1,6)
         sum = str(d1 + d2)
         print(str(d1) + " - " + str(d2) + " (total = " + sum + ")")
-    else:
-        askMenu()
 
 
 #function rolls dice once
@@ -58,38 +53,35 @@ def rollDiceOnce(d1, d2):
     d2 = random.randint(1,6)
     sum = str(d1 + d2)
     print(str(d1) + " - " + str(d2) + " (total = " + sum + ")")
-    askMenu()
-
-
-#this function will be the main dice function that will call other functions
-def diceMaster(userInp):
-    #create variables that will store dice 1 and 2
-    d1 = None
-    d2 = None
     
-    if (userInp == 1):
-        rollDiceOnce(d1, d2)
-    
-    elif(userInp == 2):
-        rollDiceFive(d1, d2)
 
-    elif(userInp == 3):
-        rollDiceN(d1, d2)
-
-    elif(userInp == 4): 
-        snakeEyes(d1, d2)
-    
-    elif(userInp == 5): 
-        print("Program Closed")
-        sys.exit()
-    
-    else:
-        print("Invalid Response")
-        askMenu()
-
-
-#this function will display the menu and ask the question
+#this function will display the menu, and call the other functions
 def askMenu():
-    userInp = int(input("Dice Roll Simulator Menu \n 1. Roll Dice Once \n 2. Rolle Dice 5 Times \n 3. Roll Dice 'n' Times \n 4. Roll Dice until Snake Eyes \n 5. Exit  \n"))
-    diceMaster(userInp)
+  #initialize variables 
+  loop = True 
+  d1 = None
+  d2 = None
+  #create a while loop that will loop through the menu
+  while loop:
+      userInp = int(input("Dice Roll Simulator Menu \n 1. Roll Dice Once \n 2. Rolle Dice 5 Times \n 3. Roll Dice 'n' Times \n 4. Roll Dice until Snake Eyes \n 5. Exit  \n"))
+      if (userInp == 1):
+          rollDiceOnce(d1, d2)
+    
+      elif(userInp == 2):
+          rollDiceFive(d1, d2)
+
+      elif(userInp == 3):
+          rollDiceN(d1, d2)
+
+      elif(userInp == 4): 
+          snakeEyes(d1, d2)
+    
+      elif(userInp == 5): 
+          loop = False
+    
+      else:
+          print("Invalid Response")
+  else:
+      print("Program End")
+
 askMenu()
